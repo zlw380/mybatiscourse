@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ch01" />
+        <module name="ch03-proxy-dao" />
+        <module name="ch05" />
+        <module name="ch06" />
+        <module name="ch02-mabatis-dao" />
+        <module name="ch04" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ch01" target="1.8" />
+      <module name="ch02-mabatis-dao" target="1.8" />
+      <module name="ch03-proxy-dao" target="1.8" />
+      <module name="ch04" target="1.8" />
+      <module name="ch05" target="1.8" />
+      <module name="ch06" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,6 @@
+org\example\domain\MyStudent.class
+org\example\domain\Student.class
+org\example\vo\QueryParam.class
+org\example\utils\MyBatisUtils.class
+org\example\dao\StudentDao.class
+org\example\vo\ViewStudent.class

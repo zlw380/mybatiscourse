@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--根标签-->
+<configuration>
+
+    <!--<settings>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>-->
+
+    <!-- 配置 mybatis 环境 -->
+    <environments default="mysql">
+
+        <!--id: 数据源的名称 -->
+        <environment id="mysql">
+            <!-- 配置事务类型：使用 JDBC 事务（使用 Connection 的提交和回滚） -->
+            <transactionManager type="JDBC"/>
+            <!-- 数据源 dataSource ：创建数据库 Connection 对象
+            type: POOLED 使用数据库的连接池
+            -->
+            <dataSource type="POOLED">
+                <!-- 连接数据库的四个要素 -->
+                <!--驱动类名-->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/ssm"/>
+                <property name="username" value="root"/>
+                <property name="password" value="3333"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+    <mappers>
+        <!-- 告诉 mybatis 要执行的 sql 语句的位置 -->
+        <mapper resource="com/example/dao/StudentDao.xml"/>
+    </mappers>
+
+</configuration>

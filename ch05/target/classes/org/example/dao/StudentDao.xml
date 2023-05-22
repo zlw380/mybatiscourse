@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="org.example.dao.StudentDao">
+
+    <select id="selectStudents" resultType="org.example.domain.Student">
+        select id,name,email,age from student order by id
+    </select>
+
+    <insert id="insertStudent">
+        insert into student values(#{id},#{name},#{email},#{age})
+    </insert>
+
+    <select id="selectStudentById" parameterType="java.lang.Integer" resultType="org.example.domain.Student" >
+        select id,name,email,age from student where id=#{id}
+    </select>
+
+    <select id="selectMultiparam" resultType="org.example.domain.Student">
+        select id,name,email,age from student where name=#{myname} or age=#{myage} order by id
+    </select>
+
+    <!--占位符使用对象语法：#{属性名，javaType=类型名称，jdbcType=数据类型}-->
+    <!--<select id="selectMultiObject" resultType="org.example.domain.Student">
+        select id,name,email,age from student
+        where name=#{paramName,javaType=java.lang.String,jdbcType=VARCHAR}
+           or age=#{paramAge,javaType=java.lang.Integer,jdbcType=INTEGER} order by id
+    </select>-->
+
+    <select id="selectMultiObject" resultType="org.example.domain.Student">
+        select id,name,email,age from student
+        where name=#{paramName} or age=#{paramAge} order by id
+    </select>
+
+    <select id="selectMultiStudent" resultType="org.example.domain.Student">
+        select id,name,email,age from student
+        where name=#{name} or age=#{age} order by id
+    </select>
+
+    <select id="selectMultiPosition" resultType="org.example.domain.Student">
+        select id,name,email,age from student where name=#{arg0} or age=#{arg1} or email=#{arg2} order by id
+    </select>
+
+    <select id="selectMultiMap" resultType="org.example.domain.Student">
+        select id,name,email,age from student where name=#{myname} or age=#{age} order by id
+    </select>
+
+    <select id="selectUseDollar" parameterType="java.lang.Integer" resultType="org.example.domain.Student" >
+        select id,name,email,age from student where name=${myname}
+    </select>
+
+    <select id="selectOrder" resultType="org.example.domain.Student" >
+        select id,name,email,age from student order by ${colName}
+    </select>
+
+    <select id="selectView" resultType="ViewStudent">
+        select id,name from student
+    </select>
+
+    <select id="selectViewById" resultType="vstu">
+        select id,name from student where id=#{id}
+    </select>
+
+    <select id="countStudent" resultType="int">
+        select count(*) from student
+    </select>
+
+    <select id="selectMapById" resultType="java.util.HashMap">
+        select id,name,email from student where id=#{id}
+    </select>
+
+    <select id="selectMultiListMap" resultType="java.util.HashMap">
+        select id,name,email,age from student where id>#{id}
+    </select>
+
+    <resultMap id="studentMap" type="org.example.domain.Student">
+        <id column="id" property="age"/>
+        <result column="name" property="name"/>
+        <result column="email" property="email"/>
+        <result column="age" property="id"/>
+    </resultMap>
+    <select id="selectAllListStudent" resultMap="studentMap">
+        select id,name,email,age from student
+    </select>
+
+    <resultMap id="myStudentMap" type="org.example.domain.MyStudent">
+        <id column="id" property="stuid"/>
+        <result column="name" property="stuname"/>
+        <result column="email" property="stuemail"/>
+        <result column="age" property="stuage"/>
+    </resultMap>
+    <select id="selectMyStudent" resultMap="myStudentMap">
+        select id,name,email,age from student
+    </select>
+
+    <select id="selectDiffColProperty" resultType="org.example.domain.MyStudent">
+        select id as stuid,name as stuname,email as stuemail,age as stuage from student
+    </select>
+
+    <select id="selectLikeOne" resultType="org.example.domain.Student">
+        select id,name,email,age from student where name like "%" #{name} "%"
+    </select>
+</mapper>

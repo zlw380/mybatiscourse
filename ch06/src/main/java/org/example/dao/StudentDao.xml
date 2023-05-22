@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="org.example.dao.StudentDao">
+
+    <sql id="studentSql">
+        select id,name,email,age from student
+    </sql>
+
+    <select id="selectStudentIf" resultType="org.example.domain.Student">
+        select id,name,email,age from student
+        where 1=1
+        <if test="name != null and name != ''">
+            and name = #{name}
+        </if>
+        <if test="age > 0">
+            or age > #{age}
+        </if>
+    </select>
+
+    <select id="selectStudentWhere" resultType="org.example.domain.Student">
+        select id,name,email,age from student
+        <where>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+            <if test="age > 0">
+                or age > #{age}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectForEachOne" resultType="org.example.domain.Student">
+        select id,name,email,age from student where id in 
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectForEachTwo" resultType="org.example.domain.Student">
+        <include refid="studentSql"></include> where id in
+        <foreach collection="list" item="stu" open="(" close=")" separator=",">
+            #{stu.id}
+        </foreach>
+    </select>
+
+    <select id="selectAll" resultType="org.example.domain.Student">
+        select * from student order by id
+    </select>
+</mapper>

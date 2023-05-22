@@ -1,0 +1,4 @@
+org\example\domain\Student.class
+org\example\dao\impl\StudentDaoImpl.class
+org\example\utils\MyBatisUtils.class
+org\example\dao\StudentDao.class
